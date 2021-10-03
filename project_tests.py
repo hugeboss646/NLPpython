@@ -3,7 +3,18 @@ from keras.losses import sparse_categorical_crossentropy
 from keras.models import Sequential
 from keras.preprocessing.text import Tokenizer
 from keras.utils import to_categorical
+import os
 
+
+def load_data(path):
+    """
+    Load dataset
+    """
+    input_file = os.path.join(path)
+    with open(input_file, "r") as f:
+        data = f.read()
+
+    return data.split('\n')
 
 def _test_model(model, input_shape, output_sequence_length, french_vocab_size):
     if isinstance(model, Sequential):
